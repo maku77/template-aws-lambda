@@ -1,0 +1,22 @@
+{
+  "name": "function",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node build/index.js",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "zip": "npm-pack-zip",
+    "cf:package": "aws cloudformation package --template-file template.yml --output-template-file template.packaged.yml --s3-bucket bucket-123456789012-functions",
+    "cf:deploy": "aws cloudformation deploy --stack-name mystack --template-file template.packaged.yml --capabilities CAPABILITY_IAM"
+  },
+  "files": [
+    "build"
+  ],
+  "bundledDependencies": [
+  ],
+  "devDependencies": {
+    "@types/node": "^14.14.35",
+    "npm-pack-zip": "^1.2.9",
+    "typescript": "^4.2.3"
+  }
+}
