@@ -1,12 +1,17 @@
+import {S3} from 'aws-sdk';
+const s3 = new S3();
+
 export async function handler(event: any): Promise<any> {
-    console.log('Hello Lambda!');
-    return {
-        statusCode: 200,
-        body: { msg: 'Hello', data: 123 }
-    }
+    const request: S3.PutObjectRequest = {
+        Bucket: process.env.BUCKET_NAME || '',
+        Key: 'Key1',
+        Body: 'Body1',
+    };
+    return s3.putObject(request).promise();
 }
 
 if (require.main === module) {
-    const res = handler(null);
-    console.log(res);
+    (async () => {
+        console.log(await handler(null));
+    })();
 }

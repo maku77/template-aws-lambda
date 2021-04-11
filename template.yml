@@ -8,4 +8,11 @@ Resources:
       Runtime: nodejs14.x
       Handler: build/index.handler
       CodeUri: function.zip
-
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref MyBucket
+      Environment:
+        Variables:
+          BUCKET_NAME: !Ref MyBucket
+  MyBucket:
+    Type: AWS::S3::Bucket
